@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import Products from "./components/Products";
+import Product from "./components/Product";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import "./App.css";
+import { FaShoppingCart } from "react-icons/fa";
+import { Cart } from "./components/cart";
+import { useState } from "react";
+import { cartopen } from "./redux/actions";
 
-function App() {
+export default function App() {
+  const { noofitems_cart, iscartopen } = useSelector((state) => state);
+  console.log(iscartopen);
+  const dispatch = useDispatch();
+  const handleopencart = () => {
+    dispatch(cartopen());
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="navheader">
+        <div className="navheading">Prod</div>
+        <div className="cart-container">
+          <FaShoppingCart
+            style={{ fontSize: "30px", cursor: "pointer" }}
+            onClick={handleopencart}
+          />
+          <div className="cart">{noofitems_cart}</div>
+        </div>
+      </div>
+      {iscartopen ? <Cart /> : null}
+      <div className="content-container">
+        <Router>
+          <Routes>
+            <Route exact path="/" element={<Products />}></Route>
+            <Route path="/:id" element={<Product />}></Route>
+          </Routes>
+        </Router>
+      </div>
     </div>
   );
 }
-
-export default App;

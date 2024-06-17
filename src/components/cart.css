@@ -1,0 +1,29 @@
+.cart-main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+.cart-containerbox{
+    background-color: white;
+    width: 500px;
+    border-radius: 10px;
+}
+.cart-card-main{
+    margin-top: 30px;
+}
+.cart-card{
+    border: 1px solid black;
+    width: 300px;
+    margin: 10px;
+    display: flex;
+}
+.cart-image{
+    height: 40px;
+    width: 40px;
+}
